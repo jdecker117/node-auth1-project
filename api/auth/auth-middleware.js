@@ -29,7 +29,9 @@ async function checkUsernameFree(req, res, next) {
     if(!user.length){
       next()
     }
-    else(next({"message": "Username taken"}))
+    else{
+      next({ status: 422, message: "Username taken"})
+    }
   } catch(err){
     next(err)
   }
@@ -71,7 +73,6 @@ function checkPasswordLength(req, res, next) {
   } else{
     next()
   }
-next()
 }
 
 // Don't forget to add these to the `exports` object so they can be required in other modules
